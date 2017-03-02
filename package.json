@@ -1,0 +1,41 @@
+{
+  "name": "remove-prefix",
+  "version": "1.0.0",
+  "description": "Removes a prefix from a string.",
+  "keywords": [
+    "remove",
+    "trim",
+    "string",
+    "prefix",
+    "beginning",
+    "start",
+    "startsWith",
+    "bind operator",
+    "callback"
+  ],
+  "author": "John Lamansky",
+  "license": "MIT",
+  "homepage": "https://github.com/lamansky/remove-prefix",
+  "repository": "lamansky/remove-prefix",
+  "main": "index.js",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "dependencies": {
+    "arrify": "^1.0.1",
+    "possible-function": "^1.0.0"
+  },
+  "devDependencies": {
+    "eslint-config-lamansky": "^1.0.0",
+    "mocha": "^3.2.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "eslintConfig": {
+    "extends": "lamansky",
+    "env": {
+      "mocha": true
+    }
+  }
+}

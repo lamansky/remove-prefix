@@ -1,6 +1,6 @@
 {
   "name": "remove-prefix",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Removes a string from the beginning of another string.",
   "keywords": [
     "remove",

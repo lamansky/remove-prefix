@@ -1,17 +1,15 @@
 {
   "name": "remove-prefix",
   "version": "1.0.0",
-  "description": "Removes a prefix from a string.",
+  "description": "Removes a string from the beginning of another string.",
   "keywords": [
     "remove",
     "trim",
     "string",
-    "prefix",
-    "beginning",
+    "suffix",
     "start",
     "startsWith",
-    "bind operator",
-    "callback"
+    "bind operator"
   ],
   "author": "John Lamansky",
   "license": "MIT",
@@ -22,8 +20,9 @@
     "node": ">=6.0.0"
   },
   "dependencies": {
-    "arrify": "^1.0.1",
-    "possible-function": "^1.0.0"
+    "@lamansky/flatten": "^1.0.0",
+    "longest-first": "^1.0.0",
+    "sbo": "^1.0.0"
   },
   "devDependencies": {
     "eslint-config-lamansky": "^1.0.0",

@@ -4,35 +4,27 @@ const assert = require('assert')
 const removePrefix = require('.')
 
 describe('removePrefix()', function () {
-  it('should remove a single prefix', function () {
-    assert.strictEqual(removePrefix('abc', 'a'), 'bc')
+  it('should return remainder and removed prefix', function () {
+    const [rest, prefix] = removePrefix('abc', 'a')
+    assert.strictEqual(rest, 'bc')
+    assert.strictEqual(prefix, 'a')
   })
 
-  it('should return subject as-is if prefix not found', function () {
-    assert.strictEqual(removePrefix('abc', 'x'), 'abc')
+  it('should return subject and empty string if prefix not found', function () {
+    const [rest, prefix] = removePrefix('abc', 'x')
+    assert.strictEqual(rest, 'abc')
+    assert.strictEqual(prefix, '')
   })
 
-  it('should remove any of a list of prefixes', function () {
-    assert.strictEqual(removePrefix('abc', ['a', 'b']), 'bc')
+  it('should remove any prefix in the argument list', function () {
+    assert.strictEqual(removePrefix('abc', 'b', 'a')[0], 'bc')
   })
 
-  it('should accept a `this` context in lieu of the first parameter', function () {
-    assert.strictEqual(removePrefix.call('abc', 'a'), 'bc')
+  it('should remove any prefix in an array', function () {
+    assert.strictEqual(removePrefix('abc', ['a', 'b'])[0], 'bc')
   })
 
-  it('should give the callback the prefix and the remainder', function (done) {
-    removePrefix('abc', 'a', (prefix, rest) => {
-      assert.strictEqual(prefix, 'a')
-      assert.strictEqual(rest, 'bc')
-      done()
-    })
-  })
-
-  it('should give the callback null if no prefix is present', function (done) {
-    removePrefix('abc', 'x', (prefix, rest) => {
-      assert.strictEqual(prefix, null)
-      assert.strictEqual(rest, 'abc')
-      done()
-    })
+  it('should support the bind operator', function () {
+    assert.strictEqual(removePrefix.call('abc', 'a')[0], 'bc')
   })
 })

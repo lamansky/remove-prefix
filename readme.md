@@ -1,40 +1,58 @@
 # remove-prefix
 
-A [Node.js](https://nodejs.org/) module that removes a prefix from a string.
-
-Optionally supports the [bind operator](https://github.com/tc39/proposal-bind-operator) and/or the callback design pattern.
+Removes a string from the beginning of another string.
 
 ## Installation
 
+Requires [Node.js](https://nodejs.org/) 6.0.0 or above.
+
 ```bash
-npm install remove-prefix --save
+npm i remove-prefix
 ```
 
-## Usage
+## API
+
+The module exports a single function.
+
+### Parameters
+
+1. Bindable: `subject` (string): The string that may or may not have a prefix to be removed.
+2. `...prefixes` (one or more of: string or Array of strings): The first prefix found will be removed. Longer prefixes are checked first.
+
+### Return Value
+
+A two-element Array:
+
+1. The string without its prefix, or the original string if no prefix was found.
+2. The prefix if one was found; otherwise an empty string.
+
+## Example
 
 ```javascript
 const removePrefix = require('remove-prefix')
 
 const subject = 'abcdef'
+let result, prefix
 
-// Removes the prefix:
-removePrefix(subject, 'abc') // 'def'
+// Removes the prefix
+[result] = removePrefix(subject, 'abc')
+result // 'def'
 
-// Removes the first prefix found from among those in an array:
-removePrefix(subject, ['xyz', 'abc', 'de']) // 'def'
+// Returns prefix as second element, or returns an empty string if not found
+[result, prefix] = removePrefix(subject, 'xyz')
+result // 'abcdef'
+prefix // ''
 
-// Supports the bind operator:
-subject::removePrefix('abc') // 'def'
+// Removes the first prefix found. Longer prefixes are checked first.
+// Prefixes can be given as an arguments list or in an array.
+[result, prefix] = removePrefix(subject, 'xyz', 'abc', 'de')
+result // 'def'
+prefix // 'abc'
 
-// Supports callback pattern:
-removePrefix(subject, 'abc', (prefix, remainder) => {
-  console.log(prefix) // 'abc'
-  console.log(remainder) // 'def'
-})
-
-// Callback pattern with bind operator and with non-existent prefix:
-subject::removePrefix('xyz', (prefix, remainder) => {
-  console.log(prefix) // null
-  console.log(remainder) // 'abcdef'
-})
+// Supports the bind operator
+subject::removePrefix('abc') // ['def', 'abc']
 ```
+
+## Related
+
+* [remove-suffix](https://github.com/lamansky/remove-suffix): Removes a string from the end of another string.
